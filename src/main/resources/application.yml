@@ -1,0 +1,38 @@
+server:
+  port: 8081
+  shutdown: graceful
+graphql:
+  spqr:
+    gui:
+      enabled: true
+    relay:
+      connection-check-relaxed: true
+      spring-data-compatible: true
+    http:
+      endpoint: /api
+  servlet:
+    mapping: /api
+spring:
+  mvc:
+    converters:
+      preferred-json-mapper: jackson
+  application:
+    name: kotlin-demo
+  profiles:
+    active: localsecrets
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: ERROR
+      hibernate: ERROR
+    com:
+      saltpay:
+        kotlindemo: INFO
+
+salt-id:
+  application-token: ${APP_TOKEN}
+  base-url: https://api.cloud.saltpay.dev/salt-id/v1
+  session-data-url: ${salt-id.base-url}/user/me
+
+
